@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="cs" data-root="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kompletní sortiment: dřeviny, japonské stromy, bambusy a lekníny | Bambus Centrum Kastner</title>
+  <meta name="description" content="Kompletní nabídka zahradnického centra v Třebízi: jehličnany, listnáče, japonské javory, tvarované stromy, azalky, rhododendrony, růže, lekníny, bambusy, hnojiva a substráty. Orientační ceny a popisy.">
+  <link rel="canonical" href="https://www.bambuscentrum.cz/sortiment.html">
+  <link rel="alternate" hreflang="cs" href="https://www.bambuscentrum.cz/sortiment.html">
+  <link rel="alternate" hreflang="en" href="https://www.bambuscentrum.cz/en/sortiment.html">
+  <meta name="theme-color" content="#111311">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page-sortiment">
+  <a class="skip" href="#obsah">Přeskočit na obsah</a>
+
+  <header class="site-head" data-head>
+    <div class="wrap head-row">
+      <a class="mark" href="index.html" aria-label="Bambus Centrum Kastner, úvodní stránka">
+        <span class="mark-name">Kastner</span>
+        <span class="mark-sub">Bambus Centrum, Třebíz</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hlavni-menu" data-nav-toggle>
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+        <span class="sr">Menu</span>
+      </button>
+      <nav id="hlavni-menu" class="nav" aria-label="Hlavní menu" data-nav>
+        <a href="sortiment.html" aria-current="page">Sortiment</a>
+        <a href="index.html#b2b">Architekti a developeři</a>
+        <a href="index.html#realizace">Realizace</a>
+        <a href="index.html#pribeh">Příběh</a>
+        <a href="index.html#showroom">Showroom</a>
+        <a class="lang" href="en/sortiment.html" hreflang="en" lang="en">English</a>
+        <a class="btn btn-small btn-bronze" href="index.html?prohlidka=1#concierge">Domluvit prohlídku</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="obsah">
+    <section class="shop-hero">
+      <div class="wrap">
+        <h1>Kompletní sortiment</h1>
+        <p class="shop-lede"><span data-total>1 395</span> rostlin a doplňků z naší nabídky. Ceny jsou orientační a platí do vyprodání zásob. Aktuální dostupnost vám ověříme telefonicky na <a href="tel:+420732154491">+420 732 154 491</a>.</p>
+        <div class="shop-tools">
+          <label class="search">
+            <span class="sr">Hledat v sortimentu</span>
+            <input type="search" placeholder="Hledat, např. javor, Pinus, leknín" autocomplete="off" data-search>
+          </label>
+          <label class="sort">
+            <span>Řadit</span>
+            <select data-sort>
+              <option value="az">Podle názvu</option>
+              <option value="price-asc">Od nejlevnějšího</option>
+              <option value="price-desc">Od nejdražšího</option>
+              <option value="new">Nejnovější</option>
+            </select>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <section class="shop wrap">
+      <aside class="shop-cats" aria-label="Kategorie">
+        <label class="cat-select">
+          <span class="sr">Kategorie</span>
+          <select data-cat-select></select>
+        </label>
+        <ul class="cat-list" data-cat-list></ul>
+      </aside>
+
+      <div class="shop-main">
+        <div class="shop-head">
+          <h2 data-cat-title>Celý sortiment</h2>
+          <p class="shop-count" data-count aria-live="polite"></p>
+        </div>
+        <div class="cat-intro" data-intro hidden></div>
+        <ul class="gallery" data-gallery hidden></ul>
+        <ul class="cards" data-cards></ul>
+        <p class="note" data-empty hidden>Nic jsme nenašli. Zkuste jiný název, nebo nám zavolejte. Mnoho rostlin máme i mimo tento seznam.</p>
+        <button class="btn btn-line more" type="button" data-more hidden>Zobrazit další</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap foot-grid">
+      <div>
+        <p class="mark-name foot-mark">Kastner</p>
+        <p>Bambus Centrum Kastner<br>Provozovna: Třebíz 91, 273 75</p>
+        <p>Provozovatel: Vlastimil Kastner, Žižkova 255, 439 23 Lenešice, IČO 46766693</p>
+      </div>
+      <div>
+        <p><a href="https://www.instagram.com/bambuscentrumkastner/" rel="noopener" target="_blank">Instagram</a><br>
+           <a href="https://www.facebook.com/bambuscentrum" rel="noopener" target="_blank">Facebook</a></p>
+        <p>Tento web nepoužívá cookies ani analytické nástroje.</p>
+      </div>
+      <div>
+        <p><a href="index.html#gdpr">Ochrana osobních údajů</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mobile-bar" aria-label="Rychlý kontakt">
+    <a href="tel:+420732154491">Zavolat</a>
+    <a href="index.html?prohlidka=1#concierge">Prohlídka</a>
+    <a href="index.html#portfolio">B2B portfolio</a>
+  </div>
+
+  <dialog class="modal" data-modal aria-labelledby="modal-title">
+    <div class="modal-inner">
+      <button class="modal-close" type="button" data-modal-close aria-label="Zavřít detail">Zavřít</button>
+      <div class="modal-photo"><div class="photo ratio-4x3" data-m-photo></div></div>
+      <div class="modal-body">
+        <div class="plaque">
+          <p class="plaque-latin" id="modal-title" data-m="latin"></p>
+          <p class="plaque-cz" data-m="cz"></p>
+          <p class="modal-cat" data-m="cat"></p>
+        </div>
+        <div class="price-table" data-m-prices></div>
+        <div class="modal-desc long" data-m-desc></div>
+        <div class="modal-cta">
+          <a class="btn btn-dark" data-m-inquire href="index.html#concierge">Poptat tuto položku</a>
+          <a class="btn btn-line" href="tel:+420732154491">Zavolat</a>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="katalog.js" defer></script>
+  <script src="sortiment.js" defer></script>
+</body>
+</html>
