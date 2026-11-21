@@ -179,7 +179,8 @@ const REFERENCES = [];
    ========================================================= */
 const LANG = document.documentElement.lang === "en" ? "en" : "cs";
 const ROOT = document.documentElement.dataset.root || "";
-const isPreview = ["file:", ""].includes(location.protocol) || /localhost|127\.0\.0\.1|github\.io/.test(location.hostname);
+// Náhled (rámečky s názvy fotek, štítek dočasných fotek): lokální soubor, localhost, nebo adresa s ?nahled=1
+const isPreview = ["file:", ""].includes(location.protocol) || /localhost|127\.0\.0\.1/.test(location.hostname) || new URLSearchParams(location.search).has("nahled");
 document.documentElement.classList.add("js");
 
 const T = {

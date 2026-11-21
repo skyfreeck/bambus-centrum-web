@@ -23,7 +23,7 @@ web_bambus_centrum/
 Každý rámec na webu ukazuje přesný název souboru. Uložte fotku pod tímto názvem do `assets/images/` a zobrazí se bez úpravy kódu.
 
 Pořadí načítání: **vlastní fotka → dočasná fotka ze stávajícího bambuscentrum.cz → zástupný rámec s instrukcí.**
-Dočasné fotky mají v náhledu štítek „Dočasná fotka z bambuscentrum.cz“. Na ostré doméně se štítek nezobrazí.
+Dočasné fotky mají v náhledu štítek „Dočasná fotka z bambuscentrum.cz“. Náhled = otevření ze složky, nebo adresa s `?nahled=1` (např. `.../index.html?nahled=1`). Bez toho web vypadá jako ostrá verze: karty bez fotky jsou skryté a rámečky jsou prázdné.
 
 | Soubor | Kde je | Poměr |
 |---|---|---|
