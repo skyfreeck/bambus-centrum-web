@@ -18,9 +18,6 @@ const CONFIG = {
   // Měření návštěvnosti bez cookies (Cloudflare Web Analytics). Vložte token, prázdné = vypnuto.
   CF_ANALYTICS_TOKEN: "",
 
-  // Na ostré doméně skrýt karty katalogu, ke kterým ještě není fotka.
-  HIDE_EMPTY_ITEMS: true,
-
   // Dokud nejsou v assets/images vlastní fotky, použije se dočasně fotka ze stávajícího webu.
   USE_LIVE_FALLBACK: true,
   LIVE_BASE: "https://www.bambuscentrum.cz/wp-content/",
@@ -37,133 +34,71 @@ const IMAGES = {
   realizace:   { file: "realizace-zahrada.jpg",    live: "gallery/realizace/realizace-9.jpg",               hint: "Hotová výsadba u architektonického domu, 3:2" },
   zakladatele: { file: "zakladatele.jpg",          live: null,                                              hint: "Vlastimil a Jiřina Kastnerovi mezi stromy v Třebízi, 4:5" },
   showroom:    { file: "showroom-trebiz.jpg",      live: "uploads/2015/05/Slider-Na%C5%A1e-zahradnictv%C3%AD.jpg", hint: "Areál Třebíz ve zlaté hodině, ideálně z dronu, 16:9" },
-
-  "niwaki-pinus":    { file: "niwaki-pinus.jpg",          live: "gallery/tvarovane-stromy/pinus-parviflora-10.jpg", hint: "Borovice niwaki, neutrální pozadí, 4:5" },
-  "niwaki-taxus":    { file: "niwaki-taxus.jpg",          live: "gallery/tvarovane-stromy/taxus-1.jpg",             hint: "Tvarovaný tis, neutrální pozadí, 4:5" },
-  "niwaki-jalovec":  { file: "niwaki-jalovec.jpg",        live: null, hint: "Tvarovaný jalovec, detail patra, 4:5" },
-  "listnace":        { file: "tvarovane-listnace.jpg",    live: null, hint: "Tvarovaná azalka nebo kdoulovec v květu, 4:5" },
-  "monument":        { file: "solitery-monumentalni.jpg", live: null, hint: "Největší solitér v areálu, člověk pro měřítko, 4:5" },
-  "sekvojovec":      { file: "sekvojovec.jpg",            live: null, hint: "Sequoiadendron 'Glaucum', celá silueta, 4:5" },
-  "kameny":          { file: "kameny-lucerny.jpg",        live: null, hint: "Kamenná lucerna a solitérní kámen, boční světlo, 4:5" },
-  "bambus-fargesia": { file: "bambus-fargesia.jpg",       live: null, hint: "Trsnatý bambus, detail stébel a listů, 4:5" },
-  "bambus-phyllo":   { file: "bambus-phyllostachys.jpg",  live: null, hint: "Vysoký bambus jako clona, protisvětlo, 4:5" },
-  "javor":           { file: "javor-acer-palmatum.jpg",   live: null, hint: "Japonský javor v podzimním vybarvení, 4:5" },
-  "pivonka":         { file: "pivonka-drevita.jpg",       live: null, hint: "Dřevitá pivoňka v květu, 4:5" },
-  "chamaecyparis":   { file: "chamaecyparis.jpg",         live: "uploads/2025/03/Chamaecyparis-obtusa-JR-768x576.jpg", hint: "Cypřišek tupolistý, 4:5" },
-  "cryptomeria":     { file: "cryptomeria.jpg",           live: "uploads/2017/01/Cryptomeria-japonica-Dacrydioides-1-768x576.jpg", hint: "Kryptomerie, 4:5" },
-  "sourcing":        { file: "sourcing-japonsko.jpg",     live: "uploads/2015/01/113_0059.jpg", hint: "Výběr u pěstitele v Japonsku, 4:5" },
 };
 
-/* ---------------- KATALOG ----------------
-   cat:    niwaki | solitery | bambusy | drevinny | sourcing
-   status: "stock" (Skladem v Třebízi) | "order" (Na zakázku)
-   price:  text ceny. U dostupnějších položek doplňte rozmezí, např. "od 4 500 Kč".
-   Nepovinné pro konkrétní kus: height (výška), width (šířka koruny), rootball (bal), age (stáří).
-   en:     anglický text pro anglickou verzi webu.                                        */
-const CATALOG = [
-  { id: "pinus", cat: "niwaki", img: "niwaki-pinus", status: "stock",
-    latin: "Pinus parviflora", cz: "Borovice drobnokvětá, niwaki",
-    size: "Od menších kusů k domu po vzrostlé solitéry", origin: "Pěstitelé ze severního Japonska",
-    price: "Individuální ocenění",
-    desc: "Nejklasičtější tvar japonské zahrady: husté polštáře jehlic na ručně vedených větvích. Každý kus tvarovali pěstitelé v Japonsku po mnoho let, proto je každý jiný. Konkrétní kusy vám ukážeme v Třebízi nebo pošleme fotografie.",
-    en: { name: "Japanese white pine, niwaki", size: "From smaller garden pieces to mature specimens", origin: "Growers in northern Japan", price: "Priced individually",
-      desc: "The most classic form of the Japanese garden: dense pads of needles on hand-trained branches. Each piece was shaped by growers in Japan over many years, so no two are alike. We will show you specific pieces in Třebíz or send photographs." } },
-  { id: "taxus", cat: "niwaki", img: "niwaki-taxus", status: "stock",
-    latin: "Taxus", cz: "Tis, tvarovaný solitér",
-    size: "Dle konkrétního kusu", origin: "Japonsko a evropské pěstírny",
-    price: "Individuální ocenění",
-    desc: "Tis snáší stín i pravidelný střih lépe než většina jehličnanů. Vhodný do vstupních prostor, atrií a k vodním plochám.",
-    en: { name: "Yew, shaped specimen", size: "Depends on the individual piece", origin: "Japan and European nurseries", price: "Priced individually",
-      desc: "Yew tolerates shade and regular clipping better than most conifers. Well suited to entrances, atriums and water features." } },
-  { id: "juniperus", cat: "niwaki", img: "niwaki-jalovec", status: "stock",
-    latin: "Juniperus", cz: "Jalovec, tvarovaný do pater",
-    size: "Dle konkrétního kusu", origin: "Pěstitelé ze severního Japonska",
-    price: "Individuální ocenění",
-    desc: "Jemná modrozelená textura a výrazně sochařská kresba kmene. Dobře snáší slunné a sušší stanoviště.",
-    en: { name: "Juniper, cloud-pruned", size: "Depends on the individual piece", origin: "Growers in northern Japan", price: "Priced individually",
-      desc: "Fine blue-green texture and a strongly sculptural trunk. Copes well with sunny, drier positions." } },
-  { id: "listnace", cat: "niwaki", img: "listnace", status: "stock",
-    latin: "Rhododendron, Chaenomeles, Styrax", cz: "Tvarované listnáče: azalky, kdoulovce, styraxy",
-    size: "Menší a střední kusy", origin: "Japonsko",
-    price: "Orientační cena na dotaz",
-    desc: "Tvarované stromy, které navíc kvetou. Ideální tam, kde chcete sezónní proměnu místo celoročně stejného obrazu.",
-    en: { name: "Shaped flowering shrubs: azaleas, quinces, snowbells", size: "Small and medium pieces", origin: "Japan", price: "Price on request",
-      desc: "Shaped trees that also flower. Ideal where you want the garden to change with the seasons." } },
-
-  { id: "monument", cat: "solitery", img: "monument", status: "order",
-    latin: "Vícekmenné a monumentální solitéry", cz: "Exponáty pro vstupní prostory a nádvoří",
-    size: "Velké rozměry, upřesníme podle projektu", origin: "Japonsko, Nizozemsko, Německo, Belgie",
-    price: "Individuální ocenění",
-    desc: "Strom, kolem kterého se navrhuje celý prostor. Vybíráme podle vaší vizualizace, s fotografií a rozměry každého kusu, a dodáváme včetně jeřábu a výsadby.",
-    en: { latin: "Multi-stem and monumental specimens", name: "Centrepieces for entrances and courtyards", size: "Large sizes, specified per project", origin: "Japan, the Netherlands, Germany, Belgium", price: "Priced individually",
-      desc: "A tree the whole space is designed around. We select to match your visualisation, with a photograph and dimensions of every piece, and deliver including crane and planting." } },
-  { id: "sekvojovec", cat: "solitery", img: "sekvojovec", status: "stock",
-    latin: "Sequoiadendron giganteum ‘Glaucum’", cz: "Sekvojovec obrovský, modrá forma",
-    size: "Dle aktuální nabídky", origin: "Evropské pěstírny",
-    price: "Orientační cena na dotaz",
-    desc: "Úzký modrošedý sloup, který roste rychle a dlouho. Výrazná vertikála pro velké pozemky.",
-    en: { name: "Giant sequoia, blue form", size: "Subject to current stock", origin: "European nurseries", price: "Price on request",
-      desc: "A narrow blue-grey column that grows fast and for a very long time. A strong vertical accent for large plots." } },
-  { id: "kameny", cat: "solitery", img: "kameny", status: "stock",
-    latin: "Kamenné lucerny a solitérní kameny", cz: "Doplňky japonské zahrady",
-    size: "Dle konkrétního kusu", origin: "Asie",
-    price: "Orientační cena na dotaz",
-    desc: "Přírodní asijské kameny a ručně tesané lucerny. Dávají zahradě měřítko a klid i v zimě.",
-    en: { latin: "Stone lanterns and specimen stones", name: "Japanese garden elements", size: "Depends on the individual piece", origin: "Asia", price: "Price on request",
-      desc: "Natural Asian stones and hand-carved lanterns. They give a garden scale and calm, even in winter." } },
-
-  { id: "fargesia", cat: "bambusy", img: "bambus-fargesia", status: "stock",
-    latin: "Fargesia", cz: "Trsnatý bambus bez výběžků",
-    size: "Kontejnery různých velikostí", origin: "Evropské pěstírny",
-    price: "Orientační cena na dotaz",
-    desc: "Nerozrůstá se do okolí, proto se hodí k terasám, do nádob i jako nízká clona. Patří k nejmrazuvzdornějším bambusům.",
-    en: { name: "Clumping bamboo, non-invasive", size: "Various container sizes", origin: "European nurseries", price: "Price on request",
-      desc: "It does not spread, so it suits terraces, containers and low screens. One of the most frost-hardy bamboos." } },
-  { id: "phyllostachys", cat: "bambusy", img: "bambus-phyllo", status: "stock",
-    latin: "Phyllostachys", cz: "Výběžkatý bambus pro vysoké clony",
-    size: "Kontejnery různých velikostí", origin: "Evropské pěstírny",
-    price: "Orientační cena na dotaz",
-    desc: "Vysoká stébla a rychlý efekt. Vysazujeme s kořenovou bariérou, kterou dodáme i nainstalujeme. S bambusy začínala celá naše firma v roce 1993.",
-    en: { name: "Running bamboo for tall screens", size: "Various container sizes", origin: "European nurseries", price: "Price on request",
-      desc: "Tall culms and a fast result. Planted with a root barrier, which we supply and install. Bamboo is where our company started in 1993." } },
-
-  { id: "acer", cat: "drevinny", img: "javor", status: "stock",
-    latin: "Acer palmatum", cz: "Javor dlanitolistý",
-    size: "Od zakrslých po stromovité kultivary", origin: "Evropské pěstírny a Japonsko",
-    price: "Orientační cena na dotaz",
-    desc: "Široký výběr kultivarů s odlišnou barvou listu a podzimním vybarvením. Vybereme podle stanoviště a velikosti zahrady.",
-    en: { name: "Japanese maple", size: "From dwarf to tree-sized cultivars", origin: "European nurseries and Japan", price: "Price on request",
-      desc: "A wide choice of cultivars with different leaf colour and autumn colour. We choose to suit the position and size of your garden." } },
-  { id: "chamaecyparis", cat: "drevinny", img: "chamaecyparis", status: "stock",
-    latin: "Chamaecyparis obtusa", cz: "Cypřišek tupolistý",
-    size: "Dle aktuální nabídky", origin: "Evropské pěstírny",
-    price: "Orientační cena na dotaz",
-    desc: "Japonský jehličnan s vějířovitými větvičkami. Pomalu roste a drží kompaktní tvar.",
-    en: { name: "Hinoki cypress", size: "Subject to current stock", origin: "European nurseries", price: "Price on request",
-      desc: "A Japanese conifer with fan-shaped sprays. Slow-growing and naturally compact." } },
-  { id: "cryptomeria", cat: "drevinny", img: "cryptomeria", status: "stock",
-    latin: "Cryptomeria japonica ‘Dacrydioides’", cz: "Kryptomerie japonská",
-    size: "Dle aktuální nabídky", origin: "Evropské pěstírny",
-    price: "Orientační cena na dotaz",
-    desc: "Neobvyklá převislá forma s dlouhými provazovitými větvemi. Pro zahrady, kde má být jeden nečekaný prvek.",
-    en: { name: "Japanese cedar", size: "Subject to current stock", origin: "European nurseries", price: "Price on request",
-      desc: "An unusual weeping form with long, rope-like branches. For gardens that need one unexpected element." } },
-  { id: "paeonia", cat: "drevinny", img: "pivonka", status: "stock",
-    latin: "Paeonia", cz: "Dřevité pivoňky",
-    size: "Kontejnery různých velikostí", origin: "Evropské a asijské pěstírny",
-    price: "Orientační cena na dotaz",
-    desc: "Keřové pivoňky s velkými květy, které na rozdíl od trvalkových nezatahují. Kvetou v květnu.",
-    en: { name: "Tree peonies", size: "Various container sizes", origin: "European and Asian nurseries", price: "Price on request",
-      desc: "Shrubby peonies with large flowers that, unlike herbaceous peonies, keep their woody frame through winter. They flower in May." } },
-
-  { id: "sourcing", cat: "sourcing", img: "sourcing", status: "order",
-    latin: "Strom podle vaší vizualizace", cz: "Individuální sourcing ze zahraničí",
-    size: "Podle projektu", origin: "Japonsko, Nizozemsko, Německo, Belgie",
-    price: "Individuální ocenění",
-    desc: "Pošlete vizualizaci, výkres nebo jen fotografii místa. Najdeme konkrétní kusy u pěstitelů, pošleme fotografie s rozměry a zajistíme dovoz, výsadbu i péči.",
-    en: { latin: "A tree to match your visualisation", name: "Individual sourcing from abroad", size: "Per project", origin: "Japan, the Netherlands, Germany, Belgium", price: "Priced individually",
-      desc: "Send a visualisation, a drawing or just a photo of the site. We find specific pieces at the growers, send photographs with dimensions and handle import, planting and aftercare." } },
+/* ---------------- EXPONÁTY ----------------
+   Nejcennější kusy na úvodní stránce (data a fotky z ceníku starého webu, 2024).
+   img  = klíč do IMAGES (vlastní fotka assets/images/exponat-*.jpg má přednost)
+   size = výška a kontejner, price = text ceny (u exponátů záměrně „na vyžádání“)
+   feature: true = velká karta. Pořadí v poli = pořadí na webu.                       */
+const EXPONATY = [
+  { id: "watereri", img: "exp-watereri", feature: true, latin: "Pinus sylvestris ‘Watereri’",
+    cz: "Borovice lesní, tvarovaná do pater", en: "Scots pine ‘Watereri’, cloud-pruned",
+    size: "250+ cm, kontejner 650 L", sizeEn: "250+ cm, 650 L container",
+    desc: "Pomalu rostoucí kultivar borovice lesní s modrozelenými jehlicemi, ručně tvarovaný do pater. S výškou přes 2,5 metru je to vlajková loď naší nabídky: strom, kolem kterého se navrhuje celý prostor.",
+    descEn: "A slow-growing Scots pine cultivar with blue-green needles, shaped into tiers by hand. At over 2.5 metres it is the flagship of our range: a tree an entire space is designed around." },
+  { id: "hetzii", img: "exp-hetzii", latin: "Juniperus × media ‘Hetzii’",
+    cz: "Jalovec prostřední, monumentální solitér", en: "Juniper ‘Hetzii’, monumental specimen",
+    size: "350–400 cm, kontejner 750 L", sizeEn: "350–400 cm, 750 L container",
+    desc: "Mohutný tvarovaný jalovec s modrozelenou texturou. Výška 3,5 až 4 metry z něj dělá dominantu vstupních prostor a nádvoří.",
+    descEn: "A large shaped juniper with blue-green texture. At 3.5 to 4 metres it commands entrances and courtyards." },
+  { id: "glauca", img: "exp-glauca", latin: "Pinus parviflora ‘Glauca’",
+    cz: "Borovice drobnokvětá, niwaki", en: "Japanese white pine ‘Glauca’, niwaki",
+    size: "225+ cm, kontejner 500 L", sizeEn: "225+ cm, 500 L container",
+    desc: "Borovice drobnokvětá s modrošedými jehlicemi, klasický strom japonských zahrad. Ručně tvarovaná do pater, výška přes 2,25 metru.",
+    descEn: "Japanese white pine with blue-grey needles, a classic of the Japanese garden. Hand-shaped into tiers, over 2.25 metres tall." },
+  { id: "carpinus", img: "exp-carpinus", latin: "Carpinus betulus",
+    cz: "Habr obecný, tvarovaná koruna", en: "Hornbeam, shaped crown",
+    size: "350+ cm, kontejner 1 250 L", sizeEn: "350+ cm, 1,250 L container",
+    desc: "Habr s tvarovanou korunou na kmeni, s výškou přes 3,5 metru. Opadavý strom, který dobře snáší i městské prostředí.",
+    descEn: "Hornbeam with a shaped crown on a clear stem, over 3.5 metres tall. A deciduous tree that copes well with urban conditions." },
+  { id: "mops", img: "exp-mops", latin: "Pinus mugo ‘Mops’",
+    cz: "Borovice kleč, tvarovaný solitér", en: "Dwarf mountain pine ‘Mops’",
+    size: "160+ cm, kontejner 450 L", sizeEn: "160+ cm, 450 L container",
+    desc: "Zakrslý kultivar borovice kleče, který roste velmi pomalu. Kus této velikosti proto představuje mnoho let pěstování a tvarování.",
+    descEn: "A dwarf mountain pine cultivar that grows very slowly, so a piece of this size represents many years of growing and shaping." },
+  { id: "negishi", img: "exp-negishi", latin: "Pinus parviflora ‘Negishi’",
+    cz: "Borovice drobnokvětá, niwaki", en: "Japanese white pine ‘Negishi’, niwaki",
+    size: "150–175 cm, kontejner 180 L", sizeEn: "150–175 cm, 180 L container",
+    desc: "Kultivar borovice drobnokvěté s modrozelenými jehlicemi, oblíbený u japonských mistrů bonsají. Kompaktní tvar pro atria a menší nádvoří.",
+    descEn: "A Japanese white pine cultivar with blue-green needles, favoured by Japanese bonsai masters. A compact form for atriums and smaller courtyards." },
+  { id: "nigra", img: "exp-nigra", latin: "Pinus nigra",
+    cz: "Borovice černá, tvarovaná do pater", en: "Austrian black pine, cloud-pruned",
+    size: "180+ cm, kontejner 240 L", sizeEn: "180+ cm, 240 L container",
+    desc: "Borovice černá s tmavě zelenými dlouhými jehlicemi. Velmi odolná vůči mrazu, suchu i městskému prostředí.",
+    descEn: "Austrian black pine with long dark green needles. Very tolerant of frost, drought and urban conditions." },
+  { id: "mintjulep", img: "exp-mintjulep", latin: "Juniperus × media ‘Mint Julep’",
+    cz: "Jalovec prostřední, tvarovaný do pater", en: "Juniper ‘Mint Julep’, cloud-pruned",
+    size: "150+ cm, kontejner 180 L", sizeEn: "150+ cm, 180 L container",
+    desc: "Jalovec se svěže zelenou, mírně převislou texturou, tvarovaný do pater. Dobře snáší slunce i sucho.",
+    descEn: "A juniper with fresh green, gently arching foliage, shaped into tiers. Tolerates sun and drought well." },
+  { id: "kaizuka", img: "exp-kaizuka", latin: "Juniperus chinensis ‘Kaizuka’",
+    cz: "Jalovec čínský, tvarovaný solitér", en: "Hollywood juniper ‘Kaizuka’",
+    size: "175+ cm, kontejner 90 L", sizeEn: "175+ cm, 90 L container",
+    desc: "Jalovec čínský s charakteristicky stočenými výhony, které připomínají plameny. Výrazný sochařský solitér.",
+    descEn: "A Chinese juniper with characteristic twisting shoots that resemble flames. A striking sculptural specimen." },
 ];
+Object.assign(IMAGES, {
+  "exp-watereri":  { file: "exponat-watereri.jpg",  live: "uploads/2024/01/tvarovany-strom-38.jpg", hint: "Pinus sylvestris Watereri, 4:5" },
+  "exp-hetzii":    { file: "exponat-hetzii.jpg",    live: "uploads/2024/01/tvarovany-strom-40.jpg", hint: "Juniperus Hetzii, 4:5" },
+  "exp-glauca":    { file: "exponat-glauca.jpg",    live: "uploads/2024/01/tvarovany-strom-33.jpg", hint: "Pinus parviflora Glauca, 4:5" },
+  "exp-carpinus":  { file: "exponat-carpinus.jpg",  live: "uploads/2024/01/tvarovany-strom-30.jpg", hint: "Carpinus betulus, 4:5" },
+  "exp-mops":      { file: "exponat-mops.jpg",      live: "uploads/2024/01/tvarovany-strom-34.jpg", hint: "Pinus mugo Mops, 4:5" },
+  "exp-negishi":   { file: "exponat-negishi.jpg",   live: "uploads/2024/01/tvarovany-strom-42.jpg", hint: "Pinus parviflora Negishi, 4:5" },
+  "exp-nigra":     { file: "exponat-nigra.jpg",     live: "uploads/2024/01/tvarovany-strom-35.jpg", hint: "Pinus nigra, 4:5" },
+  "exp-mintjulep": { file: "exponat-mintjulep.jpg", live: "uploads/2024/01/tvarovany-strom-6.jpg",  hint: "Juniperus Mint Julep, 4:5" },
+  "exp-kaizuka":   { file: "exponat-kaizuka.jpg",   live: "uploads/2024/01/tvarovany-strom-43.jpg", hint: "Juniperus Kaizuka, 4:5" },
+});
 
 /* ---------------- REFERENCE ----------------
    Sekce Reference se na webu ukáže, jakmile sem přidáte alespoň jeden projekt.
@@ -187,6 +122,9 @@ const T = {
   cs: {
     status: { stock: "Skladem v Třebízi", order: "Na zakázku, dovoz z JP, NL, DE, BE" },
     open: "Detail a poptávka",
+    availability: "Ověříme obratem, kus si můžete prohlédnout v Třebízi",
+    origin: "Ručně tvarovaný strom z evropské pěstírny",
+    price: "Ocenění na vyžádání",
     live: "Dočasná fotka z bambuscentrum.cz",
     phHow: "Uložte fotku pod tímto názvem do složky assets/images. Zobrazí se automaticky.",
     interest: (a, b) => `Mám zájem o: ${a} (${b}).\n`,
@@ -211,6 +149,9 @@ const T = {
   en: {
     status: { stock: "In stock at Třebíz", order: "Made to order, sourced from JP, NL, DE, BE" },
     open: "Details and enquiry",
+    availability: "Confirmed on request, view the piece in Třebíz",
+    origin: "Hand-shaped tree from a European nursery",
+    price: "Price on request",
     live: "Temporary photo from bambuscentrum.cz",
     phHow: "Save a photo under this name in assets/images. It will appear automatically.",
     interest: (a, b) => `I am interested in: ${a} (${b}).\n`,
@@ -234,10 +175,6 @@ const T = {
   },
 }[LANG];
 
-/* Texty položky v aktuálním jazyce */
-const tx = (it) => (LANG === "en" && it.en
-  ? { latin: it.en.latin || it.latin, name: it.en.name, size: it.en.size, origin: it.en.origin, price: it.en.price, desc: it.en.desc }
-  : { latin: it.latin, name: it.cz, size: it.size, origin: it.origin, price: it.price, desc: it.desc });
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 /* ---------------- Měření návštěvnosti (bez cookies) ---------------- */
@@ -290,66 +227,40 @@ const photoIO = "IntersectionObserver" in window
   : null;
 const queuePhoto = (el) => (photoIO ? photoIO.observe(el) : loadPhoto(el, el.dataset.img, el._onDone));
 
-/* ---------------- Katalog ---------------- */
-const catalogEl = document.querySelector("[data-catalog]");
-function renderCatalog() {
-  catalogEl.innerHTML = CATALOG.map((it) => {
-    const t = tx(it);
-    return `
-    <li class="item" data-cat="${it.cat}" data-id="${it.id}">
-      <div class="photo ratio-4x5" data-img="${it.img}" data-alt="${esc(t.latin)}, ${esc(t.name)}"></div>
-      <div class="plaque">
-        <p class="plaque-latin">${esc(t.latin)}</p>
-        <p class="plaque-cz">${esc(t.name)}</p>
-        <span class="item-status ${it.status === "order" ? "is-order" : ""}">${T.status[it.status]}</span>
-        <p class="item-facts">${esc(it.height ? `${T.dims.height} ${it.height}` : t.size)}</p>
-        <p class="item-price">${esc(t.price)}</p>
-        <button class="item-open" type="button" data-open="${it.id}">${T.open}<span class="sr">: ${esc(t.latin)}</span></button>
-      </div>
+/* ---------------- Exponáty ---------------- */
+const exhibitsEl = document.querySelector("[data-exhibits]");
+const ex = (e) => (LANG === "en" ? { name: e.en, size: e.sizeEn, desc: e.descEn } : { name: e.cz, size: e.size, desc: e.desc });
+if (exhibitsEl) {
+  exhibitsEl.innerHTML = EXPONATY.map((e) => {
+    const t = ex(e);
+    return `<li class="exhibit-card${e.feature ? " is-feature" : ""}">
+      <button type="button" data-open="${e.id}">
+        <span class="photo ratio-4x5" data-img="${e.img}" data-alt="${esc(e.latin)}, ${esc(t.name)}"></span>
+        <span class="plaque">
+          <span class="plaque-latin">${esc(e.latin)}</span>
+          <span class="plaque-cz">${esc(t.name)}</span>
+          <span class="exhibit-size">${esc(t.size)}</span>
+          <span class="exhibit-more">${T.open}</span>
+        </span>
+      </button>
     </li>`;
   }).join("");
-  const photos = catalogEl.querySelectorAll("[data-img]");
-  let pending = photos.length;
-  photos.forEach((el) => {
-    // Na ostré doméně schovat karty bez fotky (a filtry, ve kterých pak nic nezbude)
-    const hide = CONFIG.HIDE_EMPTY_ITEMS && !isPreview;
-    loadPhoto(el, el.dataset.img, (ok) => {
-      if (hide && !ok) el.closest(".item").classList.add("is-empty");
-      if (--pending === 0 && hide) {
-        document.querySelectorAll("[data-filter]").forEach((b) => {
-          const f = b.dataset.filter;
-          if (f !== "vse") b.hidden = !catalogEl.querySelector(`.item[data-cat="${f}"]:not(.is-empty)`);
-        });
-      }
-    });
-  });
 }
-renderCatalog();
-document.querySelectorAll("main [data-img]:not(.catalog [data-img])").forEach(queuePhoto);
+document.querySelectorAll("main [data-img]").forEach(queuePhoto);
 
-document.querySelector("[data-filters]").addEventListener("click", (e) => {
-  const btn = e.target.closest("[data-filter]");
-  if (!btn) return;
-  const f = btn.dataset.filter;
-  btn.parentElement.querySelectorAll("[data-filter]").forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
-  catalogEl.querySelectorAll(".item").forEach((li) => li.classList.toggle("is-hidden", f !== "vse" && li.dataset.cat !== f));
-});
-
-/* ---------------- Detail stromu (modal) ---------------- */
+/* ---------------- Detail exponátu (modal) ---------------- */
 const modal = document.querySelector("[data-modal]");
 let current = null;
-catalogEl.addEventListener("click", (e) => {
+exhibitsEl && exhibitsEl.addEventListener("click", (e) => {
   const btn = e.target.closest("[data-open]");
   if (!btn) return;
-  current = CATALOG.find((x) => x.id === btn.dataset.open);
+  current = EXPONATY.find((x) => x.id === btn.dataset.open);
   if (!current) return;
-  const t = tx(current);
+  const t = ex(current);
   const set = (k, v) => (modal.querySelector(`[data-m="${k}"]`).textContent = v);
-  set("latin", t.latin); set("cz", t.name); set("status", T.status[current.status]);
-  set("size", t.size); set("origin", t.origin); set("price", t.price); set("desc", t.desc);
-  const extra = modal.querySelector("[data-m-extra]");
-  extra.innerHTML = ["height", "width", "rootball", "age"].filter((k) => current[k])
-    .map((k) => `<div><dt>${T.dims[k]}</dt><dd>${esc(current[k])}</dd></div>`).join("");
+  set("latin", current.latin); set("cz", t.name); set("status", T.availability);
+  set("size", t.size); set("origin", T.origin); set("price", T.price); set("desc", t.desc);
+  modal.querySelector("[data-m-extra]").innerHTML = "";
   loadPhoto(modal.querySelector("[data-modal-photo]"), current.img);
   modal.showModal();
 });
@@ -357,10 +268,9 @@ modal.querySelector("[data-modal-close]").addEventListener("click", () => modal.
 modal.addEventListener("click", (e) => { if (e.target === modal) modal.close(); });
 modal.querySelector("[data-modal-inquire]").addEventListener("click", () => {
   modal.close();
-  const t = tx(current);
   const form = document.querySelector('[data-form="concierge"]');
   const msg = form.querySelector("[data-message]");
-  msg.value = T.interest(t.latin, t.name) + (msg.value || "");
+  msg.value = T.interest(current.latin, `${ex(current).name}, ${ex(current).size}`) + (msg.value || "");
   document.querySelector("#concierge").scrollIntoView({ behavior: "smooth" });
   setTimeout(() => form.querySelector("#c-jmeno").focus({ preventScroll: true }), 600);
 });

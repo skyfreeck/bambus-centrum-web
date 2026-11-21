@@ -21,7 +21,7 @@
   <link rel="alternate" hreflang="cs" href="https://www.bambuscentrum.cz/">
   <link rel="alternate" hreflang="en" href="https://www.bambuscentrum.cz/en/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20261121d">
+  <link rel="stylesheet" href="styles.css?v=20261121e">
 
   <script type="application/ld+json">
   {
@@ -109,25 +109,53 @@
       </ul>
     </section>
 
-    <!-- SORTIMENT -->
+    <!-- SORTIMENT: exponáty + kolekce (data exponátů v script.js, sekce EXPONATY) -->
     <section class="section section-light" id="sortiment" aria-labelledby="sortiment-title">
       <div class="wrap">
         <div class="section-head">
-          <h2 id="sortiment-title">Kolekce</h2>
-          <p>Každý tvarovaný strom je originál. Ukazujeme kolekce, ze kterých vybíráme. Konkrétní kusy s fotografií a rozměry vám pošleme na vyžádání, nebo si je vyberete osobně v Třebízi.</p>
+          <h2 id="sortiment-title">Exponáty</h2>
+          <p>Výběr nejcennějších kusů z naší nabídky. Každý strom je originál, ručně tvarovaný po mnoho let. Konkrétní kus vám ukážeme v Třebízi a jeho dostupnost ověříme obratem.</p>
         </div>
+        <ul class="exhibits" data-exhibits aria-live="polite"></ul>
 
-        <div class="filters" role="group" aria-label="Filtrovat sortiment" data-filters>
-          <button type="button" aria-pressed="true" data-filter="vse">Vše</button>
-          <button type="button" aria-pressed="false" data-filter="niwaki">Tvarované japonské stromy</button>
-          <button type="button" aria-pressed="false" data-filter="solitery">Monumentální solitéry</button>
-          <button type="button" aria-pressed="false" data-filter="bambusy">Mrazuvzdorné bambusy</button>
-          <button type="button" aria-pressed="false" data-filter="drevinny">Japonské javory a dřeviny</button>
-          <button type="button" aria-pressed="false" data-filter="sourcing">Sourcing na míru</button>
+        <div class="collections-head">
+          <h3>Kolekce</h3>
+          <a class="link" href="sortiment.html">Kompletní sortiment: 1 395 položek</a>
         </div>
-
-        <ul class="catalog" data-catalog aria-live="polite"></ul>
-        <noscript><p class="note">Pro zobrazení katalogu zapněte JavaScript, nebo nám zavolejte na +420 732 154 491.</p></noscript>
+        <ul class="collections">
+          <li><a class="col-tile" href="sortiment.html#tvarovane-stromy">
+            <span class="col-photo"><img src="https://www.bambuscentrum.cz/wp-content/gallery/tvarovane-stromy/pinus-parviflora-10.jpg" alt="Tvarované stromy Japonsko" loading="lazy" decoding="async"></span>
+            <span class="col-name">Tvarované stromy Japonsko</span><span class="col-n">Galerie</span>
+          </a></li>
+          <li><a class="col-tile" href="sortiment.html#tvarovane-stromy-evropa">
+            <span class="col-photo"><img src="https://www.bambuscentrum.cz/wp-content/uploads/2024/01/tvarovany-strom-45.jpg" alt="Tvarované stromy Evropa" loading="lazy" decoding="async"></span>
+            <span class="col-name">Tvarované stromy Evropa</span><span class="col-n">35 položek</span>
+          </a></li>
+          <li><a class="col-tile" href="sortiment.html#vzrostle-okrasne-rostliny">
+            <span class="col-photo"><img src="https://www.bambuscentrum.cz/wp-content/uploads/2026/03/Enkianthus-perulatus-sol-768x576.jpg" alt="Vzrostlé solitéry" loading="lazy" decoding="async"></span>
+            <span class="col-name">Vzrostlé solitéry</span><span class="col-n">98 položek</span>
+          </a></li>
+          <li><a class="col-tile" href="sortiment.html#javory">
+            <span class="col-photo"><img src="https://www.bambuscentrum.cz/wp-content/uploads/2025/02/Acer-japonicum-Indian-Summer-768x576.jpg" alt="Japonské javory" loading="lazy" decoding="async"></span>
+            <span class="col-name">Japonské javory</span><span class="col-n">75 položek</span>
+          </a></li>
+          <li><a class="col-tile" href="sortiment.html#jehlicnany">
+            <span class="col-photo"><img src="https://www.bambuscentrum.cz/wp-content/uploads/2016/02/Pinus-densiflora-‚Benelux-768x576.jpg" alt="Jehličnany" loading="lazy" decoding="async"></span>
+            <span class="col-name">Jehličnany</span><span class="col-n">286 položek</span>
+          </a></li>
+          <li><a class="col-tile" href="sortiment.html#magnolie">
+            <span class="col-photo"><img src="https://www.bambuscentrum.cz/wp-content/uploads/2026/03/Magnolia-Freya-768x576.jpg" alt="Magnolie" loading="lazy" decoding="async"></span>
+            <span class="col-name">Magnolie</span><span class="col-n">40 položek</span>
+          </a></li>
+          <li><a class="col-tile" href="sortiment.html#rhododendrony">
+            <span class="col-photo"><img src="https://www.bambuscentrum.cz/wp-content/uploads/2025/02/Rhododendron-yakushimanum-Helene-1-768x576.jpg" alt="Rhododendrony" loading="lazy" decoding="async"></span>
+            <span class="col-name">Rhododendrony</span><span class="col-n">32 položek</span>
+          </a></li>
+          <li><a class="col-tile" href="sortiment.html#lekniny">
+            <span class="col-photo"><img src="https://www.bambuscentrum.cz/wp-content/uploads/2022/05/Nymhaea-Detective-Erika-768x576.jpg" alt="Lekníny" loading="lazy" decoding="async"></span>
+            <span class="col-name">Lekníny</span><span class="col-n">79 položek</span>
+          </a></li>
+        </ul>
 
         <div class="full-cta">
           <p>Kompletní sortiment: 1 395 rostlin a doplňků<span>Jehličnany, listnáče, javory, azalky, rhododendrony, růže, lekníny, bambusy, trvalky, hnojiva a substráty. S orientačními cenami.</span></p>
@@ -597,6 +625,6 @@
     </div>
   </dialog>
 
-  <script src="script.js?v=20261121d" defer></script>
+  <script src="script.js?v=20261121e" defer></script>
 </body>
 </html>

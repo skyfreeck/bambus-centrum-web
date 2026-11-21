@@ -32,11 +32,7 @@ Dočasné fotky mají v náhledu štítek „Dočasná fotka z bambuscentrum.cz�
 | `realizace-zahrada.jpg` | Realizace | 3:2 |
 | `zakladatele.jpg` | Příběh | 4:5 |
 | `showroom-trebiz.jpg` | Showroom | 16:9 |
-| `niwaki-pinus.jpg`, `niwaki-taxus.jpg`, `niwaki-jalovec.jpg`, `tvarovane-listnace.jpg` | Katalog | 4:5 |
-| `solitery-monumentalni.jpg`, `sekvojovec.jpg`, `kameny-lucerny.jpg` | Katalog | 4:5 |
-| `bambus-fargesia.jpg`, `bambus-phyllostachys.jpg` | Katalog | 4:5 |
-| `javor-acer-palmatum.jpg`, `chamaecyparis.jpg`, `cryptomeria.jpg`, `pivonka-drevita.jpg` | Katalog | 4:5 |
-| `sourcing-japonsko.jpg` | Katalog | 4:5 |
+| `exponat-watereri.jpg`, `exponat-hetzii.jpg`, `exponat-glauca.jpg`, `exponat-carpinus.jpg`, `exponat-mops.jpg`, `exponat-negishi.jpg`, `exponat-nigra.jpg`, `exponat-mintjulep.jpg`, `exponat-kaizuka.jpg` | Exponáty (konkrétní kusy) | 4:5 |
 | `og-cover.jpg` | Náhled při sdílení odkazu | 1200×630 px |
 
 Doporučení: JPG, delší strana 2400 px, kvalita 80 %, ideálně do 400 kB (zmenšíte zdarma na squoosh.app).
@@ -47,7 +43,7 @@ Doporučení: JPG, delší strana 2400 px, kvalita 80 %, ideálně do 400 kB (zm
 | `FORM_ENDPOINT` | Adresa formuláře z formspree.io. Poptávky pak chodí rovnou do e-mailu. |
 | `BOOKING_URL` | Odkaz na plánování schůzek z Google Kalendáře. Zobrazí tlačítka „Rezervovat prohlídku“. |
 | `CF_ANALYTICS_TOKEN` | Token Cloudflare Web Analytics. Měření bez cookies, jen na ostré doméně. |
-| `HIDE_EMPTY_ITEMS` | Na ostré doméně skryje karty katalogu bez fotky a prázdné filtry. V náhledu je vidíte s instrukcí. |
+| `EXPONATY` | Nejcennější kusy na úvodní stránce (9 tvarovaných stromů s fotkami a rozměry z ceníku). Pořadí v poli = pořadí na webu, `feature: true` = velká karta. Vlastní fotka `assets/images/exponat-<id>.jpg` má přednost. |
 | `REFERENCES` | Seznam projektů. Sekce Reference se ukáže po přidání prvního. Jen se souhlasem klienta. |
 
 U položek katalogu můžete doplnit `height`, `width`, `rootball`, `age` (rozměry konkrétního kusu). Zobrazí se v detailu.

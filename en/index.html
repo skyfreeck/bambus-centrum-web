@@ -20,7 +20,7 @@
   <link rel="alternate" hreflang="cs" href="https://www.bambuscentrum.cz/">
   <link rel="alternate" hreflang="en" href="https://www.bambuscentrum.cz/en/">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="../styles.css?v=20261121d">
+  <link rel="stylesheet" href="../styles.css?v=20261121e">
 
   <script type="application/ld+json">
   {
@@ -107,25 +107,53 @@
       </ul>
     </section>
 
-    <!-- COLLECTION -->
+    <!-- COLLECTION: exhibits + collections (exhibit data in script.js, EXPONATY) -->
     <section class="section section-light" id="sortiment" aria-labelledby="sortiment-title">
       <div class="wrap">
         <div class="section-head">
-          <h2 id="sortiment-title">Collection</h2>
-          <p>Every shaped tree is one of a kind. These are the collections we select from. We will send photographs and dimensions of specific pieces on request, or you can choose in person at Třebíz.</p>
+          <h2 id="sortiment-title">Exhibits</h2>
+          <p>A selection of the most valuable pieces in our range. Every tree is one of a kind, shaped by hand over many years. We will show you a specific piece in Třebíz and confirm its availability straight away.</p>
         </div>
+        <ul class="exhibits" data-exhibits aria-live="polite"></ul>
 
-        <div class="filters" role="group" aria-label="Filter the collection" data-filters>
-          <button type="button" aria-pressed="true" data-filter="vse">All</button>
-          <button type="button" aria-pressed="false" data-filter="niwaki">Japanese cloud-pruned trees</button>
-          <button type="button" aria-pressed="false" data-filter="solitery">Monumental specimens</button>
-          <button type="button" aria-pressed="false" data-filter="bambusy">Hardy bamboo</button>
-          <button type="button" aria-pressed="false" data-filter="drevinny">Japanese maples and trees</button>
-          <button type="button" aria-pressed="false" data-filter="sourcing">Bespoke sourcing</button>
+        <div class="collections-head">
+          <h3>Collections</h3>
+          <a class="link" href="sortiment.html">Full collection: 1,395 items</a>
         </div>
-
-        <ul class="catalog" data-catalog aria-live="polite"></ul>
-        <noscript><p class="note">Please enable JavaScript to view the collection, or call us on +420 603 244 941.</p></noscript>
+        <ul class="collections">
+          <li><a class="col-tile" href="sortiment.html#tvarovane-stromy">
+            <span class="col-photo"><img src="https://www.bambuscentrum.cz/wp-content/gallery/tvarovane-stromy/pinus-parviflora-10.jpg" alt="Shaped trees from Japan" loading="lazy" decoding="async"></span>
+            <span class="col-name">Shaped trees from Japan</span><span class="col-n">Gallery</span>
+          </a></li>
+          <li><a class="col-tile" href="sortiment.html#tvarovane-stromy-evropa">
+            <span class="col-photo"><img src="https://www.bambuscentrum.cz/wp-content/uploads/2024/01/tvarovany-strom-45.jpg" alt="Shaped trees from Europe" loading="lazy" decoding="async"></span>
+            <span class="col-name">Shaped trees from Europe</span><span class="col-n">35 items</span>
+          </a></li>
+          <li><a class="col-tile" href="sortiment.html#vzrostle-okrasne-rostliny">
+            <span class="col-photo"><img src="https://www.bambuscentrum.cz/wp-content/uploads/2026/03/Enkianthus-perulatus-sol-768x576.jpg" alt="Mature specimens" loading="lazy" decoding="async"></span>
+            <span class="col-name">Mature specimens</span><span class="col-n">98 items</span>
+          </a></li>
+          <li><a class="col-tile" href="sortiment.html#javory">
+            <span class="col-photo"><img src="https://www.bambuscentrum.cz/wp-content/uploads/2025/02/Acer-japonicum-Indian-Summer-768x576.jpg" alt="Japanese maples" loading="lazy" decoding="async"></span>
+            <span class="col-name">Japanese maples</span><span class="col-n">75 items</span>
+          </a></li>
+          <li><a class="col-tile" href="sortiment.html#jehlicnany">
+            <span class="col-photo"><img src="https://www.bambuscentrum.cz/wp-content/uploads/2016/02/Pinus-densiflora-‚Benelux-768x576.jpg" alt="Conifers" loading="lazy" decoding="async"></span>
+            <span class="col-name">Conifers</span><span class="col-n">286 items</span>
+          </a></li>
+          <li><a class="col-tile" href="sortiment.html#magnolie">
+            <span class="col-photo"><img src="https://www.bambuscentrum.cz/wp-content/uploads/2026/03/Magnolia-Freya-768x576.jpg" alt="Magnolias" loading="lazy" decoding="async"></span>
+            <span class="col-name">Magnolias</span><span class="col-n">40 items</span>
+          </a></li>
+          <li><a class="col-tile" href="sortiment.html#rhododendrony">
+            <span class="col-photo"><img src="https://www.bambuscentrum.cz/wp-content/uploads/2025/02/Rhododendron-yakushimanum-Helene-1-768x576.jpg" alt="Rhododendrons" loading="lazy" decoding="async"></span>
+            <span class="col-name">Rhododendrons</span><span class="col-n">32 items</span>
+          </a></li>
+          <li><a class="col-tile" href="sortiment.html#lekniny">
+            <span class="col-photo"><img src="https://www.bambuscentrum.cz/wp-content/uploads/2022/05/Nymhaea-Detective-Erika-768x576.jpg" alt="Water lilies" loading="lazy" decoding="async"></span>
+            <span class="col-name">Water lilies</span><span class="col-n">79 items</span>
+          </a></li>
+        </ul>
 
         <div class="full-cta">
           <p>Full collection: 1,395 plants and supplies<span>Conifers, deciduous trees, maples, azaleas, rhododendrons, roses, water lilies, bamboo, perennials, fertilisers and substrates, with indicative prices.</span></p>
@@ -590,6 +618,6 @@
     </div>
   </dialog>
 
-  <script src="../script.js?v=20261121d" defer></script>
+  <script src="../script.js?v=20261121e" defer></script>
 </body>
 </html>

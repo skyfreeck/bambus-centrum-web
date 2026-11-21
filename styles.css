@@ -602,3 +602,41 @@ input[aria-invalid="true"], select[aria-invalid="true"] { border-color: #A0412D;
 .for-bar a { color: var(--alabaster); white-space: nowrap; }
 .form-alt { margin-top: .5rem; font-size: .9rem; color: var(--muted-dark); }
 .link-light { color: var(--alabaster); text-underline-offset: .25em; }
+
+/* ---------- Exponáty a kolekce (úvodní stránka) ---------- */
+.exhibits { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 3rem 1.8rem; grid-auto-flow: dense; align-items: start; }
+.exhibit-card.is-feature { grid-column: span 2; grid-row: span 2; }
+.exhibit-card button { display: block; width: 100%; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; color: inherit; }
+.exhibit-card .photo { display: block; background: var(--alabaster-2); }
+.exhibit-card .photo img { transition: transform .8s var(--ease); }
+.exhibit-card button:hover .photo img { transform: scale(1.03); }
+.exhibit-card .plaque { display: block; padding: 1rem 0 0; background: none; border-top: 0; }
+.exhibit-card .plaque > span { display: block; }
+.exhibit-card.is-feature .plaque { border-top: 2px solid var(--bronze); margin-top: 1rem; padding-top: 1.1rem; }
+.exhibit-card.is-feature .plaque-latin { font-size: 1.8rem; }
+.exhibit-size { margin-top: .45rem; font-size: .88rem; color: var(--muted); }
+.exhibit-more { display: inline-block !important; margin-top: .7rem; font-size: .9rem; font-weight: 500; border-bottom: 1px solid var(--bronze); }
+.exhibit-card button:hover .exhibit-more { color: var(--bronze-ink); }
+
+.collections-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: .5rem 2rem; margin-top: clamp(4rem, 8vw, 6rem); padding-top: 1.6rem; border-top: 1px solid var(--line); }
+.collections-head h3 { font: 400 clamp(1.7rem, 3vw, 2.3rem)/1.1 var(--serif); }
+.collections { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2rem 1.4rem; }
+.col-tile { display: block; text-decoration: none; color: inherit; }
+.col-photo { display: block; aspect-ratio: 4 / 3; overflow: hidden; background: var(--alabaster-2); }
+.col-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); color: transparent; }
+.col-tile:hover .col-photo img { transform: scale(1.04); }
+.col-name { display: block; margin-top: .8rem; font: 400 1.18rem/1.3 var(--serif); }
+.col-tile:hover .col-name { text-decoration: underline; text-decoration-color: var(--bronze); text-underline-offset: .2em; }
+.col-n { display: block; margin-top: .15rem; font-size: .85rem; color: var(--muted); }
+
+@media (max-width: 1080px) {
+  .exhibits { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .collections { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .exhibits { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.2rem 1rem; }
+  .exhibit-card.is-feature { grid-row: auto; }
+  .exhibit-card .plaque-latin { font-size: 1.05rem; }
+  .exhibit-card.is-feature .plaque-latin { font-size: 1.45rem; }
+  .collections { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.6rem 1rem; }
+}
