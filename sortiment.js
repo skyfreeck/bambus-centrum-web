@@ -201,6 +201,13 @@
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") setNav(false); });
   addEventListener("scroll", () => head.classList.toggle("is-scrolled", scrollY > 8), { passive: true });
 
+  /* ---------- Osobní odkaz (pokračuje z úvodní stránky) ---------- */
+  try {
+    const pro = sessionStorage.getItem("bc_pro");
+    const bar = $("[data-for-bar]");
+    if (pro && bar) { bar.querySelector("[data-for-name]").textContent = pro; bar.hidden = false; }
+  } catch {}
+
   /* ---------- Start: kategorie z adresy (#jehlicnany) ---------- */
   const fromHash = decodeURIComponent(location.hash.slice(1));
   setCat(K.cats.some((c) => c.s === fromHash) ? fromHash : "", false);

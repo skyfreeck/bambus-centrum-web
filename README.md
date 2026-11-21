@@ -80,3 +80,11 @@ Obnovení dat: v prohlížeči na bambuscentrum.cz znovu vyexportovat `bambus_ka
 **Důležité před přesměrováním domény:** fotky produktů se načítají ze starého webu (`www.bambuscentrum.cz/wp-content/uploads/`).
 Až doména bambuscentrum.cz povede na nový web, ponechte starý WordPress na subdoméně (např. `archiv.bambuscentrum.cz`)
 a v `katalog.js` změňte hodnotu `base`. Jinak fotky v sortimentu zmizí.
+
+## Osobní odkazy pro partnery
+Interní stránka `odkaz.html` (není odkázaná z webu a je skrytá před vyhledávači). Zadáte název studia a dostanete odkaz `index.html?pro=Studio&typ=architekt` a hotovou zprávu po hovoru a pro první e-mail.
+Web pak partnera osloví jménem, předvyplní firmu ve formulářích a poptávky přijdou s označením „Osobní odkaz: Studio“.
+Kdo odkaz otevřel, uvidíte až po zapnutí měření (`CF_ANALYTICS_TOKEN`).
+
+## Skrytí před vyhledávači
+Všechny stránky mají `<meta name="robots" content="noindex, nofollow">`. Po schválení a přepnutí domény ho z index.html, sortiment.html a jejich anglických verzí smažte (v odkaz.html ho nechte).

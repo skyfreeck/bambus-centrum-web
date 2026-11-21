@@ -204,7 +204,7 @@ const T = {
     labels: { jmeno: "Jméno", firma: "Firma / studio", email: "E-mail", telefon: "Telefon", typ_projektu: "Typ projektu",
       zajem: "Zájem", lokalita_zahrady: "Lokalita zahrady", faze_projektu: "Fáze projektu", termin_vysadby: "Plánovaná výsadba",
       rozpocet: "Rozpočet na zeleň", lokalita_projektu: "Lokalita projektu", zprava: "Zpráva",
-      prohlidka: "Soukromá prohlídka", termin_prohlidky: "Preferovaný termín", role: "Role" },
+      prohlidka: "Soukromá prohlídka", termin_prohlidky: "Preferovaný termín", role: "Role", zdroj: "Zdroj" },
     dims: { height: "Výška", width: "Šířka koruny", rootball: "Bal", age: "Stáří" },
     refEmpty: "Náhled: sekce se zobrazí, až v script.js doplníte REFERENCES.",
   },
@@ -228,7 +228,7 @@ const T = {
     labels: { jmeno: "Name", firma: "Company / studio", email: "E-mail", telefon: "Phone", typ_projektu: "Project type",
       zajem: "Interest", lokalita_zahrady: "Garden location", faze_projektu: "Project stage", termin_vysadby: "Planned planting",
       rozpocet: "Planting budget", lokalita_projektu: "Project location", zprava: "Message",
-      prohlidka: "Private visit", termin_prohlidky: "Preferred date", role: "Role" },
+      prohlidka: "Private visit", termin_prohlidky: "Preferred date", role: "Role", zdroj: "Source" },
     dims: { height: "Height", width: "Crown width", rootball: "Root ball", age: "Age" },
     refEmpty: "Preview: this section appears once REFERENCES are filled in script.js.",
   },
@@ -430,6 +430,19 @@ applyRole(cForm.querySelector('input[name="role"]:checked').value);
 
 /* Předvyplnění z odkazu (např. ze stránky Kompletní sortiment): ?poptavka=...  ?prohlidka=1 */
 const params = new URLSearchParams(location.search);
+
+/* Osobní odkaz pro partnera: ?pro=Studio%20XY&typ=architekt|developer|hotel (vytvoříte na odkaz.html) */
+let PRO = (params.get("pro") || "").trim().slice(0, 60);
+try { if (PRO) sessionStorage.setItem("bc_pro", PRO); else PRO = sessionStorage.getItem("bc_pro") || ""; } catch {}
+if (PRO) {
+  const bar = document.querySelector("[data-for-bar]");
+  if (bar) { bar.querySelector("[data-for-name]").textContent = PRO; bar.hidden = false; }
+  ["#pf-firma", "#c-firma"].forEach((s) => { const f = document.querySelector(s); if (f && !f.value) f.value = PRO; });
+  const typ = (params.get("typ") || "").toLowerCase();
+  const role = typ.startsWith("dev") || typ.startsWith("hot") ? "developer" : "architect";
+  const r = cForm.querySelector(`input[name="role"][value="${role}"]`);
+  if (r) { r.checked = true; applyRole(role); }
+}
 if (params.get("poptavka")) {
   const msg = cForm.querySelector("[data-message]");
   msg.value = (LANG === "en" ? "I am interested in: " : "Mám zájem o: ") + params.get("poptavka") + "\n";
@@ -463,6 +476,7 @@ async function handleSubmit(e) {
   if (bad) { status.textContent = messageFor(bad); status.classList.add("is-error"); bad.focus(); return; }
 
   const data = Object.fromEntries([...new FormData(form)].filter(([k, v]) => k !== "souhlas" && String(v).trim() !== ""));
+  if (typeof PRO !== "undefined" && PRO) data.zdroj = (LANG === "en" ? "Personal link: " : "Osobní odkaz: ") + PRO;
   const isPortfolio = form.dataset.form === "portfolio";
   const role = isPortfolio ? "b2b" : data.role;
   const to = isPortfolio || role !== "private" ? CONFIG.EMAIL_B2B : CONFIG.EMAIL_SHOWROOM;

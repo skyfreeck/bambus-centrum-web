@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Osobní odkaz pro partnera | Bambus Centrum Kastner (interní)</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=20261121d">
+  <style>
+    .tool { max-width: 46rem; margin: 0 auto; padding: clamp(2.5rem, 6vw, 4.5rem) var(--gutter) 5rem; }
+    .tool h1 { font: 400 clamp(2rem, 5vw, 3rem)/1.1 var(--serif); }
+    .tool .lede { margin-top: 1rem; color: var(--muted); }
+    .tool .out { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 2px solid var(--bronze); }
+    .tool h2 { font: 400 1.4rem/1.3 var(--serif); margin: 2rem 0 .6rem; }
+    .tool textarea { min-height: 11rem; font-size: .95rem; line-height: 1.5; }
+    .tool .row { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .8rem; }
+    .tool .linkbox { width: 100%; font-size: .9rem; }
+    .tool .done { margin-left: .4rem; font-size: .85rem; color: var(--moss); }
+  </style>
+</head>
+<body>
+  <main class="tool">
+    <h1>Osobní odkaz pro partnera</h1>
+    <p class="lede">Interní nástroj, není odkázaný z webu. Vyplň název studia nebo firmy. Web ho pak osloví jménem a jeho poptávky ti přijdou označené. Zprávu vždy zkontroluj a odešli sám.</p>
+
+    <form data-gen>
+      <div class="field">
+        <label for="g-name">Název studia nebo firmy</label>
+        <input id="g-name" type="text" placeholder="např. Land05" maxlength="60" required>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="g-typ">Typ partnera</label>
+          <select id="g-typ">
+            <option value="architekt">Architekt / krajinář</option>
+            <option value="developer">Developer</option>
+            <option value="hotel">Hotel / wellness</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="g-lang">Jazyk webu</label>
+          <select id="g-lang">
+            <option value="cs">Čeština</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="g-greet">Oslovení</label>
+          <input id="g-greet" type="text" value="Dobrý den">
+        </div>
+        <div class="field">
+          <label for="g-mail">E-mail příjemce <span class="opt">(nepovinné)</span></label>
+          <input id="g-mail" type="email">
+        </div>
+      </div>
+    </form>
+
+    <div class="out">
+      <h2>Odkaz</h2>
+      <input class="linkbox" type="text" readonly data-link>
+      <div class="row">
+        <button class="btn btn-dark btn-small" type="button" data-copy="link">Kopírovat odkaz</button>
+        <a class="btn btn-line btn-small" data-open target="_blank" rel="noopener">Zobrazit, jak to uvidí</a>
+      </div>
+
+      <h2>Zpráva po hovoru (WhatsApp nebo SMS)</h2>
+      <textarea data-msg="after"></textarea>
+      <div class="row">
+        <button class="btn btn-dark btn-small" type="button" data-copy="after">Kopírovat zprávu</button>
+        <a class="btn btn-line btn-small" data-wa target="_blank" rel="noopener">Otevřít ve WhatsApp</a>
+      </div>
+
+      <h2>První oslovení e-mailem</h2>
+      <input class="linkbox" type="text" data-subject>
+      <textarea data-msg="cold" style="margin-top:.6rem"></textarea>
+      <div class="row">
+        <button class="btn btn-dark btn-small" type="button" data-copy="cold">Kopírovat e-mail</button>
+        <a class="btn btn-line btn-small" data-mailto>Otevřít v e-mailu</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const $ = (s) => document.querySelector(s);
+    const base = location.href.replace(/[^/]*([?#].*)?$/, "");
+    function build() {
+      const name = $("#g-name").value.trim() || "vaše studio";
+      const typ = $("#g-typ").value;
+      const lang = $("#g-lang").value;
+      const greet = $("#g-greet").value.trim() || "Dobrý den";
+      const link = `${base}${lang === "en" ? "en/" : ""}index.html?pro=${encodeURIComponent(name)}&typ=${typ}`;
+      $("[data-link]").value = link;
+      $("[data-open]").href = link;
+      const what = typ === "architekt" ? "do vašich projektů" : typ === "hotel" ? "pro váš hotel" : "do vašich projektů";
+      const after = `${greet},\n\nděkuji za dnešní hovor. Jak jsem slíbil, posílám odkaz připravený pro ${name}:\n${link}\n\nNajdete tam výběr tvarovaných japonských stromů a solitérů a celý sortiment s ceníkem. Pokud budete chtít konkrétní kus vidět naživo, provedu vás v Třebízi mimo běžný provoz, je to 30 minut z Prahy.\n\nMichal Kastner\nBambus Centrum Kastner, B2B divize\n+420 722 026 000`;
+      const subject = `Tvarované japonské stromy ${what}`;
+      const cold = `${greet},\n\njsem Michal Kastner z rodinné firmy Bambus Centrum Kastner v Třebízi. Od roku 1993 dovážíme tvarované stromy přímo od pěstitelů ze severního Japonska. Developerským a architektonickým projektům jsme se dosud aktivně nevěnovali.\n\nTeď poprvé otevíráme kapacity vybraným studiím a developerům. Pro ${name} jsem připravil přehled kolekcí a celého sortimentu:\n${link}\n\nMám vám poslat portfolio konkrétních kusů, které máme skladem? Stačí odpovědět jedním slovem.\n\nMichal Kastner\nB2B divize, +420 722 026 000`;
+      $('[data-msg="after"]').value = after;
+      $('[data-msg="cold"]').value = cold;
+      $("[data-subject]").value = subject;
+      $("[data-wa]").href = "https://wa.me/?text=" + encodeURIComponent(after);
+      $("[data-mailto]").href = `mailto:${encodeURIComponent($("#g-mail").value.trim())}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(cold)}`;
+    }
+    $("[data-gen]").addEventListener("input", build);
+    document.querySelectorAll("[data-copy]").forEach((b) => b.addEventListener("click", async () => {
+      const k = b.dataset.copy;
+      const text = k === "link" ? $("[data-link]").value : k === "cold" ? `${$("[data-subject]").value}\n\n${$('[data-msg="cold"]').value}` : $('[data-msg="after"]').value;
+      try { await navigator.clipboard.writeText(text); } catch { const t = document.createElement("textarea"); t.value = text; document.body.appendChild(t); t.select(); document.execCommand("copy"); t.remove(); }
+      const done = document.createElement("span"); done.className = "done"; done.textContent = "Zkopírováno"; b.after(done); setTimeout(() => done.remove(), 1600);
+    }));
+    build();
+  </script>
+</body>
+</html>

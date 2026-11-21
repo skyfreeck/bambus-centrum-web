@@ -594,3 +594,11 @@ input[aria-invalid="true"], select[aria-invalid="true"] { border-color: #A0412D;
 @media (max-width: 1080px) { .review-list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 900px) { .rating { justify-self: start; text-align: left; } }
 @media (max-width: 760px) { .review-list { grid-template-columns: 1fr; } }
+
+/* ---------- Osobní odkaz a WhatsApp ---------- */
+.for-bar { background: var(--moss); color: #D9DDD3; font-size: .88rem; }
+.for-bar .wrap { padding-top: .65rem; padding-bottom: .65rem; }
+.for-bar strong { color: var(--alabaster); font-weight: 500; }
+.for-bar a { color: var(--alabaster); white-space: nowrap; }
+.form-alt { margin-top: .5rem; font-size: .9rem; color: var(--muted-dark); }
+.link-light { color: var(--alabaster); text-underline-offset: .25em; }
