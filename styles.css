@@ -640,3 +640,5 @@ input[aria-invalid="true"], select[aria-invalid="true"] { border-color: #A0412D;
   .exhibit-card.is-feature .plaque-latin { font-size: 1.45rem; }
   .collections { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.6rem 1rem; }
 }
+.exhibit-desc { margin-top: .9rem; max-width: 34rem; font: 400 1.05rem/1.6 var(--serif); color: var(--muted); }
+@media (max-width: 760px) { .exhibit-desc { font-size: .95rem; } }

@@ -240,6 +240,7 @@ if (exhibitsEl) {
           <span class="plaque-latin">${esc(e.latin)}</span>
           <span class="plaque-cz">${esc(t.name)}</span>
           <span class="exhibit-size">${esc(t.size)}</span>
+          ${e.feature ? `<span class="exhibit-desc">${esc(t.desc)}</span>` : ""}
           <span class="exhibit-more">${T.open}</span>
         </span>
       </button>
