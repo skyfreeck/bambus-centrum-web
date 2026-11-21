@@ -516,7 +516,7 @@ addEventListener("scroll", () => head.classList.toggle("is-scrolled", scrollY > 
 
 /* ---------------- Scroll reveal ---------------- */
 if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  const targets = document.querySelectorAll(".section-head, .facts-list li, .values > div, .process li, .process-photos .exhibit, .story-grid > *, .roles, .showroom-grid > *, .faq, .contacts, .lead-form, .ref");
+  const targets = document.querySelectorAll(".section-head, .facts-list li, .values > div, .process li, .process-photos .exhibit, .story-grid > *, .roles, .showroom-grid > *, .faq, .contacts, .lead-form, .ref, .review");
   const io = new IntersectionObserver((entries) => entries.forEach((en) => {
     if (en.isIntersecting) { en.target.classList.add("is-in"); io.unobserve(en.target); }
   }), { rootMargin: "0px 0px -8% 0px" });
